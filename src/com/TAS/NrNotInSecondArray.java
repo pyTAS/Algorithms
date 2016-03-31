@@ -24,4 +24,3 @@ public class NrNotInSecondArray {
 
     }
 }
-//&&(i!=j)
