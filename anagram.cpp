@@ -1,39 +1,62 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int main()
+bool isAnagram (string a, string b)
 {
-  string a;
-  string b;
-  bool isAnagram = false;
-  a = "aabbcc";
-  b = "abcabc";
-  int aLen = a.length();
-  int bLen = b.length();
-  //cout<<a.length()<<endl;
-  //cout<<b.length()<<endl;
-  
-  if (aLen==bLen)
-  {
-      for (int i=0; i<aLen; ++i)
-      {
-         for (int j=0; j<bLen; ++j)
-         {
-             if (a[i]==b[j])
-                isAnagram=true;
-         }
-      }
-  }
-  
-  if (isAnagram)
+    bool isAn = true;
+    int aLen = a.length();
+    int bLen = b.length();
+    std::vector<char> aVect;
+    std::vector<char> bVect;
+    int i = 0;
+
+    for (int i=0; i<aLen; i++)
+    {
+        aVect.push_back(a[i]);
+
+    }
+    std::sort(aVect.begin(), aVect.end());
+
+    for (int i=0; i<bLen; i++)
+    {
+        bVect.push_back(b[i]);
+
+    }
+    std::sort(bVect.begin(), bVect.end());
+
+
+    while (i<aVect.size() && isAn)
+    {
+        if (aVect[i] == bVect[i])
+            i = i + 1;
+        else
+            return isAn = false;
+    }
+
+    return isAn;
+
+}
+
+int main ()
+{
+
+//    string a = "listen";
+//    string b = "silent";
+    string a = "acccbc";
+    string b = "aabbcc";
+//    string a = "abcs";
+//    string b = "bca";
+
+    if (isAnagram(a,b))
     {
         cout<<"strings are anagrams"<<endl;
+    } else
+    {
+        cout<<"strings are not anagrams"<<endl;
     }
-  else
-  {
-      cout<<"strings are not anagrams"<<endl;
-      }   
-  
+
 }
